@@ -42,20 +42,17 @@ class MovieSearchPage extends ConsumerWidget {
               loading: () => const Center(child: CircularProgressIndicator()),
               error: (e, _) => Text('$e'),
               data: (movies) {
-                if (movies.isEmpty && queryIsNotEmpty) {
-                  return Expanded(
-                    child: Center(
-                      child: SvgPicture.asset(
-                        'assets/icons/empty_state.svg',
-                        width: 80,
-                        height: 80,
-                      ),
-                    ),
-                  );
-                }
-
                 return Expanded(
-                  child: MovieList(movies: movies),
+                  child: switch (movies.isEmpty && queryIsNotEmpty) {
+                    true => Center(
+                        child: SvgPicture.asset(
+                          'assets/icons/empty_state.svg',
+                          width: 80,
+                          height: 80,
+                        ),
+                      ),
+                    false => MovieList(movies: movies),
+                  },
                 );
               },
             ),

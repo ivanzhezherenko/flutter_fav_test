@@ -20,10 +20,10 @@ class MovieApiService {
 
   static const baseImageUrl = 'https://image.tmdb.org/t/p/w500';
 
-  Future<List<Movie>> getTopRatedMovies() async {
+  Future<List<Movie>> getTopRatedMovies({required int page}) async {
     final response = await _dio.get('/movie/top_rated', queryParameters: {
       'language': 'en-US',
-      'page': 1,
+      'page': page,
     });
     final results = response.data['results'] as List;
     return results.map((json) => Movie.fromJson(json)).toList();

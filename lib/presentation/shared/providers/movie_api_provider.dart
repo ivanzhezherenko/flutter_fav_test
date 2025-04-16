@@ -6,7 +6,7 @@ final movieApiProvider = Provider<MovieApiService>((ref) => MovieApiService());
 
 final topRatedMoviesProvider = FutureProvider<List<Movie>>((ref) async {
   final api = ref.read(movieApiProvider);
-  return api.getTopRatedMovies();
+  return api.getTopRatedMovies(page: 1);
 });
 
 final movieDetailsProvider = FutureProvider.family<Movie, String>((ref, id) async {
