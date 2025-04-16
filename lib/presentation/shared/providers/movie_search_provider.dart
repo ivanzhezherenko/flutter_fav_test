@@ -22,7 +22,6 @@ final searchMoviesProvider = FutureProvider.autoDispose<List<Movie>>((ref) async
   final query = ref.watch(searchQueryProvider);
   if (query.length < 3) return [];
 
-  await Future.delayed(const Duration(milliseconds: 400));
   final api = ref.read(movieApiProvider);
   return api.searchMovies(query);
 });

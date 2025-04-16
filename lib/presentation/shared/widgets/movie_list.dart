@@ -13,15 +13,6 @@ class MovieList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (movies.isEmpty) {
-      return Center(
-        child: SvgPicture.asset(
-          'assets/icons/empty_state.svg',
-          width: 80,
-          height: 80,
-        ),
-      );
-    }
 
     return GridView.builder(
       padding: const EdgeInsets.only(top: 24, left: 16.5, right: 16.5),

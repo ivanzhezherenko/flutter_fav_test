@@ -14,6 +14,8 @@ class MovieAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final canPop = Navigator.of(context).canPop();
+
     return AppBar(
       titleSpacing: 20,
       title: switch (title != null) {
@@ -23,10 +25,13 @@ class MovieAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         false => null
       },
-      leading: IconButton(
-        onPressed: context.pop,
-        icon: const Icon(CupertinoIcons.back, size: 38),
-      ),
+      leading: switch (canPop) {
+        true => IconButton(
+            onPressed: context.pop,
+            icon: const Icon(CupertinoIcons.back, size: 38),
+          ),
+        false => null,
+      },
       actions: actions,
     );
   }
